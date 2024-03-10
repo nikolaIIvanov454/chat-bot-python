@@ -198,5 +198,13 @@
   {
     "question": "What is the capital of South Korea?",
     "answer": "Seoul"
+  },
+  {
+    "question": "What is the sun's color?",
+    "answer": "Orange"
+  },
+  {
+    "question": "What is my name?",
+    "answer": "Nikolai"
   }
 ]
