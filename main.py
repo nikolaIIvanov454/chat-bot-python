@@ -1,41 +1,40 @@
-import tensorflow as tf
-import tensorflow_text as tf_text
-
 import keras
-import keras.preprocessing.text as keras_text
 
 import json
 import numpy as np
 
 json_file = open('data.json', 'r')
 
-json_data = json.load(json_file)
+json_data = json.load(json_file)['data']
 
 question_list = []
-
 answers_list = []
+type_list = []
+
+type_list.append(json_data[0]['type'])
+question_list.append(json_data[0]['questions'])
 
 for index in range(0, len(json_data)):
-    question_list.append(json_data[index]['question'])
-    answers_list.append(json_data[index]['answer'])
+    if index % 2 != 0:
+        type_list.append(json_data[index]['type'])
+        answers_list.append(json_data[index]['answers'])
 
-model = keras.Sequential(
-    [
-        keras.layers.Input(shape=(1, ), dtype=tf.string),
-        keras.layers.Dense(32, activation='relu'),
-        keras.layers.Dense(1)
-    ]
-)
+print(data)
 
-model.compile(optimizer='adam', loss='mse')
+# print(question_list, answers_list, type_list)
 
-tokenizer = keras_text.Tokenizer()
-tokenizer.fit_on_texts(question_list)
-question_sequences = tokenizer.texts_to_sequences(question_list)
+# model = keras.Sequential(
+#     [
+#         keras.layers.Input(shape=(1, )),
+#         keras.layers.Dense(32, activation='relu'),
+#         keras.layers.Dense(1)
+#     ]
+# )
 
-model.fit(np.array(question_sequences), np.array(answers_list), epochs=10, batch_size=64)
+# model.compile(optimizer='adam', loss='mse')
 
-input_sequences = tokenizer.texts_to_sequences(input_texts)
-result = model.predict(np.array(["What is the sun's color?"], ["What is my name?"]))
+# model.fit(np.array(question_list), np.array(answers_list), epochs=10, batch_size=64)
 
-print(result)
+# result = model.predict(np.array(["What is the sun's color?"], ["What is my name?"]))
+
+# print(result)
