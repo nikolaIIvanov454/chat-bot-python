@@ -1,4 +1,8 @@
+import tensorflow as tf
+import tensorflow_text as tf_text
+
 import keras
+import keras.preprocessing.text as keras_text
 
 import json
 import numpy as np
@@ -17,7 +21,7 @@ for index in range(0, len(json_data)):
 
 model = keras.Sequential(
     [
-        keras.layers.Input(shape=(1, )),
+        keras.layers.Input(shape=(1, ), dtype=tf.string),
         keras.layers.Dense(32, activation='relu'),
         keras.layers.Dense(1)
     ]
@@ -25,8 +29,13 @@ model = keras.Sequential(
 
 model.compile(optimizer='adam', loss='mse')
 
-model.fit(np.array(question_list), np.array(answers_list), epochs=10, batch_size=64)
+tokenizer = keras_text.Tokenizer()
+tokenizer.fit_on_texts(question_list)
+question_sequences = tokenizer.texts_to_sequences(question_list)
 
+model.fit(np.array(question_sequences), np.array(answers_list), epochs=10, batch_size=64)
+
+input_sequences = tokenizer.texts_to_sequences(input_texts)
 result = model.predict(np.array(["What is the sun's color?"], ["What is my name?"]))
 
 print(result)
