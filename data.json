@@ -1,9 +1,9 @@
 {
   "data": [
     {
-      "type": "question",
+      "type": "questions",
       "questions": [
-        "What is the capital of Australia?",
+        "What's the capital of Australia?",
         "Who wrote the play \"Romeo and Juliet\"?",
         "What is the largest mammal in the world?",
         "In which year did World War I start?",
@@ -52,11 +52,8 @@
         "What is the largest fish in the ocean?",
         "In which year did the Apollo 11 mission land on the Moon?",
         "What is the capital of South Korea?"
-      ]
-    },
-    
-    {
-      "type": "answers",
+      ],
+
       "answers": [
         "Canberra",
         "William Shakespeare",
@@ -111,7 +108,7 @@
     },
 
     {
-      "type": "chatbot_questions",
+      "type": "personal_chatbot_questions",
       "questions": [
         "Hello",
         "What are you?",
@@ -123,11 +120,8 @@
         "Where are you from?",
         "What is your name?",
         "What can you do?"
-      ]
-    },
-    
-    {
-      "type": "chatbot_answers",
+      ],
+
       "answers": [
         "Hi there! How can I assist you today?",
         "I'm a chatbot designed to help answer your questions and provide assistance.",
@@ -141,6 +135,5 @@
         "I can answer questions, provide information, assist with tasks, and engage in conversation."
       ]
     }
-    
   ]
 }
