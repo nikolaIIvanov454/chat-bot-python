@@ -1,7 +1,11 @@
 import json
 import string
+import random
 
+import numpy as np
 import pandas as pd
+from keras import Input, Model
+from keras.layers import Embedding, LSTM, Dense
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sklearn.preprocessing import LabelEncoder
@@ -25,7 +29,7 @@ json_file.close()
 data_table = pd.DataFrame({"inputs": question_list, "types": type_list})
 
 # removing unnecessary punctuation for faster training, except question mark
-data_table['inputs'] = data_table['inputs'].apply(lambda wrd: [ltrs.lower() for ltrs in wrd if ltrs not in string.punctuation or ltrs == '?'])
+data_table['inputs'] = data_table['inputs'].apply(lambda wrd: [ltrs.lower() for ltrs in wrd if ltrs not in string.punctuation])
 data_table['inputs'] = data_table['inputs'].apply(lambda wrd: ''.join(wrd))
 
 # processing every word, and converting it from string to integers, kind of like a table with two columns one for the integer value (token, unique) and the other the most used word.
@@ -40,35 +44,38 @@ padded_train_data = pad_sequences(train_data)
 le = LabelEncoder()
 y_train = le.fit_transform(data_table['types'])
 
-print(data_table)
+input_shape = padded_train_data.shape[1]
 
-# flat_input_data = [item for sublist in question_list for item in sublist]
-# flat_output_data = [item for sublist in type_list for item in sublist]
-#
-# data_frame = pd.DataFrame({ "Input Data": flat_input_data, "Type": flat_output_data })
+vocabulary = len(tokenizer.word_index)
 
-# print(data_frame)
+output_length = le.classes_.shape[0]
 
-# for i in range(0, len(answers_list)):
-#     print(i)
-#
-# for i in range(0, len(type_list)):
-#     print(i)
-# data = pd.DataFrame({ "input": question_list, "output": answers_list })
+inputs = Input(shape=(input_shape,))
+output = Embedding(input_dim=vocabulary+1, output_dim=10)(inputs)
+output = LSTM(12)(output)
+output = Dense(output_length, activation='softmax')(output)
+model = Model(inputs=inputs, outputs=output)
 
+model.compile(loss="sparse_categorical_crossentropy", optimizer='adam', metrics=['accuracy'])
 
-# model = keras.Sequential(
-#     [
-#         keras.layers.Input(shape=(1, )),
-#         keras.layers.Dense(32, activation='relu'),
-#         keras.layers.Dense(1)
-#     ]
-# )
+train = model.fit(padded_train_data,y_train,epochs=55)
 
-# model.compile(optimizer='adam', loss='mse')
-
-# model.fit(np.array(question_list), np.array(answers_list), epochs=10, batch_size=64)
-
-# result = model.predict(np.array(["What is the sun's color?"], ["What is my name?"]))
-
-# print(result)
+while True:
+  texts_p = []
+  prediction_input = input('You : ')
+  #removing punctuation and converting to lowercase
+  prediction_input = [letters.lower() for letters in prediction_input if letters not in string.punctuation]
+  prediction_input = ''.join(prediction_input)
+  texts_p.append(prediction_input)
+  #tokenizing and padding
+  prediction_input = tokenizer.texts_to_sequences(texts_p)
+  prediction_input = np.array(prediction_input).reshape(-1)
+  prediction_input = pad_sequences([prediction_input],input_shape)
+  #getting output from model
+  output = model.predict(prediction_input)
+  output = output.argmax()
+  #finding the right tag and predicting
+  response_tag = le.inverse_transform([output])[0]
+  print("Chatkata : ", random.choice(answers_list[response_tag]))
+  if response_tag == "goodbye":
+    break
