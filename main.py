@@ -50,16 +50,18 @@ vocabulary = len(tokenizer.word_index)
 
 output_length = le.classes_.shape[0]
 
+# Model creation and layers for prediction
 inputs = Input(shape=(input_shape,))
 output = Embedding(input_dim=vocabulary+1, output_dim=10)(inputs)
 output = LSTM(4)(output)
 output = Dense(output_length, activation='softmax')(output)
-model = Model(inputs=inputs, outputs=output)
 
+model = Model(inputs=inputs, outputs=output)
 model.compile(loss="sparse_categorical_crossentropy", optimizer='adam', metrics=['accuracy'])
 
 train = model.fit(padded_train_data,y_train,epochs=55)
 
+# question asking based on trained data
 while True:
   texts_p = []
   prediction_input = input('You : ')
