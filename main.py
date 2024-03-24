@@ -6,8 +6,8 @@ import numpy as np
 import pandas as pd
 from keras import Input, Model
 from keras.layers import Embedding, LSTM, Dense
-from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.preprocessing.sequence import pad_sequences
+from keras_preprocessing.text import Tokenizer
+from keras.preprocessing.sequence import pad_sequences
 from sklearn.preprocessing import LabelEncoder
 
 json_file = open('data.json', 'r')
@@ -52,7 +52,7 @@ output_length = le.classes_.shape[0]
 
 inputs = Input(shape=(input_shape,))
 output = Embedding(input_dim=vocabulary+1, output_dim=10)(inputs)
-output = LSTM(12)(output)
+output = LSTM(4)(output)
 output = Dense(output_length, activation='softmax')(output)
 model = Model(inputs=inputs, outputs=output)
 
@@ -70,6 +70,7 @@ while True:
   #tokenizing and padding
   prediction_input = tokenizer.texts_to_sequences(texts_p)
   prediction_input = np.array(prediction_input).reshape(-1)
+  print(prediction_input)
   prediction_input = pad_sequences([prediction_input],input_shape)
   #getting output from model
   output = model.predict(prediction_input)
