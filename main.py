@@ -5,7 +5,7 @@ import random
 import numpy as np
 import pandas as pd
 from keras import Input, Model
-from keras.layers import Embedding, LSTM, Dense
+from keras.layers import Embedding, LSTM, Dense, Flatten
 from keras_preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.preprocessing import LabelEncoder
@@ -53,13 +53,14 @@ output_length = le.classes_.shape[0]
 # Model creation and layers for prediction
 inputs = Input(shape=(input_shape,))
 output = Embedding(input_dim=vocabulary+1, output_dim=10)(inputs)
-output = LSTM(4)(output)
+output = LSTM(10, return_sequences=True)(output)
+output = Flatten()(output)
 output = Dense(output_length, activation='softmax')(output)
 
 model = Model(inputs=inputs, outputs=output)
 model.compile(loss="sparse_categorical_crossentropy", optimizer='adam', metrics=['accuracy'])
 
-train = model.fit(padded_train_data,y_train,epochs=55)
+train = model.fit(padded_train_data,y_train,epochs=210)
 
 # question asking based on trained data
 while True:
@@ -72,7 +73,6 @@ while True:
   #tokenizing and padding
   prediction_input = tokenizer.texts_to_sequences(texts_p)
   prediction_input = np.array(prediction_input).reshape(-1)
-  print(prediction_input)
   prediction_input = pad_sequences([prediction_input],input_shape)
   #getting output from model
   output = model.predict(prediction_input)

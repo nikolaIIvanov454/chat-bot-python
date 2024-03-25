@@ -48,33 +48,113 @@
     {
       "type": "personal_inquiry",
       "questions": [
-        "How are you?",
-        "What's up?",
-        "How's it going?",
-        "Are you human?"
+        "How are you feeling today?",
+        "What's your current mood?",
+        "Are you feeling alright?",
+        "How are things going for you?",
+        "Feeling good today?",
+        "What's your emotional state right now?",
+        "Are you doing well?"
       ],
       "answers": [
-        "I'm doing well, thanks for asking!",
-        "Not much, just here to assist you.",
-        "It's going well, thanks for asking!",
-        "No, I'm not human. I'm an AI-powered chatbot designed to assist you with your queries."
+        "I'm feeling great, thanks for asking!",
+        "I'm doing well, thank you.",
+        "Feeling good, thanks.",
+        "Things are going fine, thank you.",
+        "I'm feeling alright, thanks for checking in!",
+        "Doing well today, thanks for asking.",
+        "I'm feeling good today, thanks."
       ]
     },
     {
-      "type": "existential_questions",
+      "type": "planet_count",
       "questions": [
         "How many planets are there in the solar system?",
-        "Is there water on Mars?",
-        "Are steroids dangerous?",
-        "Which is the biggest planet?",
-        "Is the Sun a planet or a star?"
+        "How many planets orbit the Sun?",
+        "What is the total count of planets in our solar system?"
       ],
       "answers": [
-        "No there isnt.",
-        "Its Jupiter.",
-        "There are eight planets.",
-        "It depends if they are dangerous.",
-        "The Sun is a star."
+        "There are eight planets in the solar system.",
+        "The solar system consists of eight planets.",
+        "There are a total of eight planets orbiting the Sun."
+      ]
+    },
+    {
+      "type": "planet_names",
+      "questions": [
+        "What are the names of the planets in our solar system?",
+        "Can you list the planets in our solar system?",
+        "Name all the planets in our solar system."
+      ],
+      "answers": [
+        "The planets in our solar system are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
+        "In our solar system, we have Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
+        "The planets of our solar system include Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
+      ]
+    },
+    {
+      "type": "closest_to_sun",
+      "questions": [
+        "Which planet is closest to the Sun?",
+        "What is the nearest planet to the Sun?",
+        "Identify the planet nearest to the Sun."
+      ],
+      "answers": [
+        "Mercury is the planet closest to the Sun.",
+        "The closest planet to the Sun is Mercury.",
+        "Mercury is the nearest planet to the Sun."
+      ]
+    },
+    {
+      "type": "largest_planet",
+      "questions": [
+        "What is the largest planet in our solar system?",
+        "Which planet holds the title for being the largest in the solar system?",
+        "Identify the largest planet in the solar system."
+      ],
+      "answers": [
+        "Jupiter is the largest planet in our solar system.",
+        "The largest planet in our solar system is Jupiter.",
+        "Jupiter holds the title for the largest planet in our solar system."
+      ]
+    },
+    {
+      "type": "most_moons",
+      "questions": [
+        "Which planet has the most moons?",
+        "What planet boasts the largest number of moons?",
+        "Identify the planet with the most moons."
+      ],
+      "answers": [
+        "Jupiter has the most moons of any planet in our solar system.",
+        "The planet with the most moons in our solar system is Jupiter.",
+        "Jupiter boasts the largest number of moons among all planets in our solar system."
+      ]
+    },
+    {
+      "type": "farthest_from_sun",
+      "questions": [
+        "What is the farthest planet from the Sun?",
+        "Identify the planet that is farthest from the Sun.",
+        "Which planet holds the title for being the farthest from the Sun?"
+      ],
+      "answers": [
+        "Neptune is the farthest planet from the Sun.",
+        "The farthest planet from the Sun is Neptune.",
+        "Neptune holds the title for the most distant planet from the Sun."
+      ]
+    },
+    {
+      "type": "pluto_status",
+      "questions": [
+        "Is Pluto considered a planet?",
+        "What is Pluto's classification?",
+        "Is Pluto still regarded as a planet?"
+      ],
+      "answers": [
+        "Pluto is no longer considered a planet, it is classified as a dwarf planet.",
+        "Pluto has been reclassified as a dwarf planet and is no longer considered one of the planets in our solar system.",
+        "Pluto's status as a planet has been revoked, and it is now classified as a dwarf planet."
       ]
     }
   ]
