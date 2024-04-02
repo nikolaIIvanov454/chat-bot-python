@@ -62,6 +62,8 @@ model.compile(loss="sparse_categorical_crossentropy", optimizer='adam', metrics=
 
 train = model.fit(padded_train_data,y_train,epochs=210)
 
+model.save('./testing/chatkata_trained.keras')
+
 # question asking based on trained data
 while True:
   texts_p = []
