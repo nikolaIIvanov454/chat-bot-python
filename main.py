@@ -60,7 +60,7 @@ output = Dense(output_length, activation='softmax')(output)
 model = Model(inputs=inputs, outputs=output)
 model.compile(loss="sparse_categorical_crossentropy", optimizer='adam', metrics=['accuracy'])
 
-train = model.fit(padded_train_data,y_train,epochs=210)
+train = model.fit(padded_train_data,y_train,epochs=170)
 
 model.save('./testing/chatkata_trained.keras')
 

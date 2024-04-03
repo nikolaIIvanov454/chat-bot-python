@@ -84,12 +84,14 @@
       "questions": [
         "What are the names of the planets in our solar system?",
         "Can you list the planets in our solar system?",
-        "Name all the planets in our solar system."
+        "Name all the planets in our solar system.",
+        "List out the names of the planets orbiting the Sun."
       ],
       "answers": [
         "The planets in our solar system are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
         "In our solar system, we have Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
-        "The planets of our solar system include Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
+        "The planets of our solar system include Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune.",
+        "Our solar system comprises Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune."
       ]
     },
     {
@@ -97,12 +99,14 @@
       "questions": [
         "Which planet is closest to the Sun?",
         "What is the nearest planet to the Sun?",
-        "Identify the planet nearest to the Sun."
+        "Identify the planet nearest to the Sun.",
+        "Which planet orbits the Sun closest?"
       ],
       "answers": [
         "Mercury is the planet closest to the Sun.",
         "The closest planet to the Sun is Mercury.",
-        "Mercury is the nearest planet to the Sun."
+        "Mercury is the nearest planet to the Sun.",
+        "The planet closest to the Sun is Mercury."
       ]
     },
     {
@@ -110,12 +114,14 @@
       "questions": [
         "What is the largest planet in our solar system?",
         "Which planet holds the title for being the largest in the solar system?",
-        "Identify the largest planet in the solar system."
+        "Identify the largest planet in the solar system.",
+        "Which planet has the greatest diameter in our solar system?"
       ],
       "answers": [
         "Jupiter is the largest planet in our solar system.",
         "The largest planet in our solar system is Jupiter.",
-        "Jupiter holds the title for the largest planet in our solar system."
+        "Jupiter holds the title for the largest planet in our solar system.",
+        "The planet with the greatest diameter in our solar system is Jupiter."
       ]
     },
     {
