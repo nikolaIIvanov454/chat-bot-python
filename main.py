@@ -28,7 +28,7 @@ json_file.close()
 
 data_table = pd.DataFrame({"inputs": question_list, "types": type_list})
 
-# removing unnecessary punctuation for faster training, except question mark
+# removing unnecessary punctuation for faster training.
 data_table['inputs'] = data_table['inputs'].apply(lambda wrd: [ltrs.lower() for ltrs in wrd if ltrs not in string.punctuation])
 data_table['inputs'] = data_table['inputs'].apply(lambda wrd: ''.join(wrd))
 
@@ -37,17 +37,19 @@ tokenizer = Tokenizer(num_words=2000)
 tokenizer.fit_on_texts(data_table['inputs'])
 train_data = tokenizer.texts_to_sequences(data_table['inputs'])
 
-# makes a number data of type NumPY array, so that every array element is the same length.
+# makes a number data of type NumPY array, every array element is the same length.
 padded_train_data = pad_sequences(train_data)
 
 # converting the data of types to numbers for training
 le = LabelEncoder()
 y_train = le.fit_transform(data_table['types'])
 
+# number of substrings in a word.
 input_shape = padded_train_data.shape[1]
 
 vocabulary = len(tokenizer.word_index)
 
+# number of types present in json file
 output_length = le.classes_.shape[0]
 
 # Model creation and layers for prediction
